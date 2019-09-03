@@ -1,0 +1,45 @@
+/**app.wxss**/
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+.test {
+  display: flex;
+}
+.addressList-container {
+   display: flex;
+}
+
+.address-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.wxParse-img {
+  display: block !important;
+}
+
+.order-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.orderdetail-container {
+  box-sizing: border-box;
+  background-color: #f4f4f4;
+  font-family: PingFangSC-Light, helvetica, 'Heiti SC';
+}

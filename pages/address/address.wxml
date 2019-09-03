@@ -1,0 +1,27 @@
+<view class="addressList-container">
+    <view class="address-list" wx:if="{{ addressList.length > 0 }}">
+      <view class="item" wx:for="{{addressList}}" wx:key="{{item.receiveAddressId}}" bindtap="addressSelectedOrUpdate" data-index="{{index}}">
+        <view class="l">
+          <view class="name">{{item.receiveAddressContactName}}</view>
+          <view class="default" wx:if="{{item.default}}">默认</view>
+        </view>
+        <view class="c">
+          <view class="center-top">
+            <view class="mobile">{{item.receiveAddressContactPhone}}</view>
+            <view class="place"></view>
+            <view class="setdefault" catchtap="setDefaultAddress" data-address-id="{{item.receiveAddressId}}" hidden='{{item.default}}'>设为默认</view>
+          </view>
+          <!-- <view class="mobile">{{item.receiveAddressContactPhone}}</view> -->
+          <view class="address">{{item.receiveAddressContent}}</view>
+        </view>
+        <view class="r" hidden='{{addressList.length ==1}}'>
+          <image catchtap="deleteAddress" data-address-id="{{item.receiveAddressId}}" class="del" src="/pages/images/del-address.png"></image>
+        </view>
+      </view>
+    </view>
+  <view class="empty-view" wx:if="{{ addressList.length <= 0 }}">
+    <image class="icon" src="/pages/images/address_null.png"></image>
+    <text class="text">收货地址在哪里</text>
+  </view>
+  <view class="add-address" bindtap="address" data-address-id="0">新增收货地址</view>
+</view>

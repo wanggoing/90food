@@ -1,0 +1,40 @@
+<view class="order-container">
+  <view class="no-order" hidden="{{orderList==null||orderList.length==0 ? false : true}}">
+    <image src="/pages/images/no-order.png" class="no-order-img"></image>
+    <view class="text">暂无订单</view>
+  </view>
+  <!-- 订单列表 -->
+  <view class="orders" hidden="{{orderList==null||orderList.length==0 ? true : false}}">
+    <view class='order' wx:for="{{orderList}}" bindtap="orderInfo" data-item-index="{{index}}" data-parentIndex="{{parentIndex}}" wx:key="key">
+      <view class="h">
+        <view class="l">订单编号:{{item.orderInfo.orderId}}</view>
+        <view class="r">下单时间:{{item.orderInfo.createTime}}</view>
+      </view>
+      <view class="goods" wx:for="{{item.orderDetail}}" wx:key="{{orderDetail.goodsId}}" wx:for-item="orderDetail">
+        <view class="img">
+          <image src="{{orderDetail.goodsSmallImageUrl}}"></image>
+        </view>
+        <view class="info">
+          <text class="name">{{orderDetail.goodsName}}</text>
+          <text class="des">{{orderDetail.goodsDesc}}</text>
+          <text class="price">￥{{orderDetail.goodsPrice}}</text>
+          <text class="number">x{{orderDetail.goodsNum}}</text>
+        </view>
+      </view>
+      <view class="b">
+        <view class="l">实付金额:￥{{item.orderInfo.actualPaymentAmount}}</view>
+        <view class="r">
+           <button class="btn" catchtap="payOrder" data-item-index="{{index}}" data-parentIndex="{{parentIndex}}" hidden='{{currentType!=0}}'>付款</button>
+           <button class="btn_logistics" catchtap="toLogistics" data-item-index="{{index}}" data-parentIndex="{{parentIndex}}" hidden='{{currentType==0 || currentType==1}}'>查看物流</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="status-box">
+    <view bindtap="statusTap" class="status-label {{index == currentType ? 'active' : ''}}" wx:for-items="{{statusType}}" wx:key="{{index}}" data-index="{{index}}">
+      {{item}}
+      <view class="{{tabClass[index]}}"></view>
+    </view>
+  </view>
+</view>
